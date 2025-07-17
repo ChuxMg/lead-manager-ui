@@ -9,7 +9,7 @@ export default function Home() {
   const [leads, setLeads] = useState([]);
 
   const fetchLeads = async () => {
-    const res = await axios.get("http://localhost:3000/leads"); // Update if backend URL differs
+    const res = await axios.get(`${process.env.LEAD_API_URL}/leads`);
     setLeads(res.data);
   };
 

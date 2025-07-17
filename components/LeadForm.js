@@ -11,7 +11,7 @@ export default function LeadForm({ onLeadAdded }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/leads", form);
+      const res = await axios.post(`${process.env.LEAD_API_URL}/leads`, form);
       onLeadAdded(res.data);
       setForm({ name: "", email: "", status: "NEW" });
     } catch (err) {
