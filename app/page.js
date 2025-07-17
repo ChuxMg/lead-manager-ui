@@ -9,7 +9,7 @@ export default function Home() {
   const [leads, setLeads] = useState([]);
 
   const fetchLeads = async () => {
-    const res = await axios.get("http://localhost:3000/leads");
+    const res = await axios.get("https://lead-manager-api.onrender.com/leads");
     setLeads(res.data);
   };
 
