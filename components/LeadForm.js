@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function LeadForm({ onLeadAdded }) {
-  const [form, setForm] = useState({ name: "", email: "", status: "New" });
+  const [form, setForm] = useState({ name: "", email: "", status: "NEW" });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -13,7 +13,7 @@ export default function LeadForm({ onLeadAdded }) {
     try {
       const res = await axios.post("http://localhost:3000/leads", form);
       onLeadAdded(res.data);
-      setForm({ name: "", email: "", status: "New" });
+      setForm({ name: "", email: "", status: "NEW" });
     } catch (err) {
       alert(err.response?.data?.error || "Error adding lead");
     }
@@ -26,7 +26,7 @@ export default function LeadForm({ onLeadAdded }) {
     >
       <input
         name="name"
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded text-gray-900"
         placeholder="Name"
         value={form.name}
         onChange={handleChange}
@@ -34,7 +34,7 @@ export default function LeadForm({ onLeadAdded }) {
       />
       <input
         name="email"
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded text-gray-900"
         placeholder="Email"
         value={form.email}
         onChange={handleChange}
@@ -42,15 +42,15 @@ export default function LeadForm({ onLeadAdded }) {
       />
       <select
         name="status"
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded text-gray-900"
         value={form.status}
         onChange={handleChange}
       >
-        <option>New</option>
-        <option>Engaged</option>
-        <option>Proposal Sent</option>
-        <option>Closed-Won</option>
-        <option>Closed-Lost</option>
+        <option value="NEW">New</option>
+        <option value="ENGAGED">Engaged</option>
+        <option value="PROPOSAL_SENT">Proposal Sent</option>
+        <option value="CLOSED_WON">Closed-Won</option>
+        <option value="CLOSED_LOST">Closed-Lost</option>
       </select>
       <button
         type="submit"
