@@ -17,11 +17,22 @@ export default function Home() {
     fetchLeads();
   }, []);
 
+  
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`https://lead-manager-api.onrender.com/leads/${id}`);
+      setLeads(leads.filter((lead) => lead.id !== id));
+    } catch (err) {
+      alert("Error deleting lead");
+    }
+  };
+
+
   return (
     <div className="max-w-xl mx-auto mt-10">
       <h1 className="text-3xl font-bold text-center mb-6">Lead Manager</h1>
       <LeadForm onLeadAdded={(newLead) => setLeads([...leads, newLead])} />
-      <LeadList leads={leads} />
+      <LeadList leads={leads} onDelete={handleDelete} />
     </div>
   );
 }
