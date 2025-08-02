@@ -1,4 +1,4 @@
-export default function LeadList({ leads, onDelete }) {
+export default function LeadList({ leads, onDelete, onEdit }) {
   return (
     <ul className="mt-4 space-y-2">
       {leads.map((lead) => (
@@ -13,12 +13,20 @@ export default function LeadList({ leads, onDelete }) {
               {lead.status}
             </div>
           </div>
-          <button
-            onClick={() => onDelete(lead.id)}
-            className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700"
-          >
-            Delete
-          </button>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => onEdit(lead)}
+              className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => onDelete(lead.id)}
+              className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
         </li>
       ))}
     </ul>
